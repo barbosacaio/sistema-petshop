@@ -13,12 +13,12 @@ São Paulo</p><br>
     <li>Cadastro de pets</li>
     <li>Listagem dos pets cadastrados</li>
     <li>Responsividade para dispositivos móveis e <i>desktop</i></li>
+    <li>A lista de pets e o cadastro de pets necessita de um login ativo</li>
 </ul><br>
 
 <h3>Funções Futuras</h3>
 <ul>
     <li>O cadastro de pets não pedirá o email do dono, o ID será pego de acordo com o usuário logado</li>
-    <li>As páginas de cadastrar pet e de listar pet serão restritas sem um login ativo</li>
     <li>A página de listar pets mostrará apenas os pets do usuário logado</li>
     <li>Adicionar mais informações na página Home</li>
     <li>Alterar o estilo do carrossel de imagens na Home</li>
