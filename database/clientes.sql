@@ -1,0 +1,9 @@
+USE petshop;
+
+CREATE TABLE clientes(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(80) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    senha VARCHAR(50) NOT NULL
+);

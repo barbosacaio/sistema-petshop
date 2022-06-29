@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop</title>
+    <link rel="shortcut icon" sizes="196x196" href="imagens/logo.png">
+
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+    /* Fontes */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    /* Configurações Universais */
+    body{
+        font-family: "Roboto";
+        font-size: larger;
+    }
+</style>
+<script type="text/javascript">
+    // Muda os 'options' da raça de acordo com a espécie de animal selecionada
+    function mostrarSelect(prefixo, escolha) {
+        var opcaoSelecionada = (escolha.options[escolha.selectedIndex].value);
+
+        // Não selecionou nenhum animal
+        if(opcaoSelecionada == ""){
+            var div = document.getElementById(prefixo + "nenhuma");
+            div.style.display = 'block';
+        }else{
+            var div = document.getElementById(prefixo + "nenhuma");
+            div.style.display = 'none';
+        }
+
+        // Selecionou 'cachorro'
+        if(opcaoSelecionada == "Cachorro"){
+            var div = document.getElementById(prefixo + "cachorro");
+            div.style.display = 'block';
+        }else{
+            var div = document.getElementById(prefixo + "cachorro");
+            div.style.display = 'none';
+        }
+
+        // Selecionou 'carneiro/ovelha'
+        if(opcaoSelecionada == "Carneiro/Ovelha"){
+            var div = document.getElementById(prefixo + "carneiro-ovelha");
+            div.style.display = 'block';
+        }else{
+            var div = document.getElementById(prefixo + "carneiro-ovelha");
+            div.style.display = 'none';
+        }
+
+        // Selecionou 'cavalo/égua'
+        if(opcaoSelecionada == "Cavalo/Égua"){
+            var div = document.getElementById(prefixo + "cavalo-egua");
+            div.style.display = 'block';
+        }else{
+            var div = document.getElementById(prefixo + "cavalo-egua");
+            div.style.display = 'none';
+        }
+
+        // Selecionou 'cobra'
+        if(opcaoSelecionada == "Cobra"){
+            var div = document.getElementById(prefixo + "cobra");
+            div.style.display = 'block';
+        }else{
+            var div = document.getElementById(prefixo + "cobra");
+            div.style.display = 'none';
+        }
+
+        // Selecionou 'coelho'
+        if(opcaoSelecionada == "Coelho"){
+            var div = document.getElementById(prefixo + "coelho");
+            div.style.display = 'block';
+        }else{
+            var div = document.getElementById(prefixo + "coelho");
+            div.style.display = 'none';
+        }
+
+        // Selecionou 'gato'
+        if(opcaoSelecionada == "Gato"){
+            var div = document.getElementById(prefixo + "gato");
+            div.style.display = 'block';
+        }else{
+            var div = document.getElementById(prefixo + "gato");
+            div.style.display = 'none';
+        }
+
+        // Selecionou 'hamster'
+        if(opcaoSelecionada == "Hamster"){
+            var div = document.getElementById(prefixo + "hamster");
+            div.style.display = 'block';
+        }else{
+            var div = document.getElementById(prefixo + "hamster");
+            div.style.display = 'none';
+        }
+
+        // Selecionou 'pássaro'
+        if(opcaoSelecionada == "Pássaro"){
+            var div = document.getElementById(prefixo + "passaro");
+            div.style.display = 'block';
+        }else{
+            var div = document.getElementById(prefixo + "passaro");
+            div.style.display = 'none';
+        }
+    };
+</script>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light p-3" style="background-color: rgba(50, 140, 245, 0.6);">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a href="index.html" class="navbar-brand ">
+                <img src="imagens/logo.png" alt="Logo Petshop" width="40px">
+            </a>
+
+            <!-- Botão que aparece quando a tela é pequena o suficiente para fazer o dropdown -->
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Itens da navbar -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="#cadastro" class="nav-item nav-link" type="button" data-bs-toggle="modal" data-bs-target="#modalCadastro">Cadastro</a>
+                    <a href="#login" class="nav-item nav-link" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a>
+                    <a href="#pets" class="nav-item nav-link" type="button" data-bs-toggle="modal" data-bs-target="#modalPets">Pets</a>
+                    <a href="lista-pets.php" class="nav-item nav-link" type="button">Lista de Pets</a>
+                </div>
+                <div class="navbar-nav ms-auto">
+                    <a href="#sair" class="nav-item nav-link" type="button" data-bs-toggle="modal" data-bs-target="#modalSair">Sair</a>
+                </div>
+            </div>
+        </div>
+    </nav><br><br>
+
+    <!-- Carrossel de Imagens -->
+    <div id="carrossel" class="carousel slide" data-ride="carousel" style="margin: auto; width: 60%; padding: 10px;">
+        <!-- Imagens do Carrossel -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="imagens/carrossel_cachorro1.jpg" alt="Cachorro 1">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="imagens/carrossel_gato1.jpg" alt="Gato 1">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="imagens/carrossel_cachorro2.jpg" alt="Cachorro 2">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="imagens/carrossel_gato2.jpg" alt="Gato 2">
+          </div>
+        </div>
+
+        <!-- Controles do Carrossel -->
+        <a class="carousel-control-prev" href="#carrossel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" href="#carrossel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+    </div>
+    <br><br>
+
+    <!-- Modal de Cadastro -->
+    <div class="modal" id="modalCadastro">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Cadastro de Clientes</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <!-- Modal Body -->
+            <div class="modal-body col-sm-4" style="margin: auto; width: 50%; padding: 10px;">
+                <!-- Formulário de cadastro -->
+                <form autocomplete="off" method="post" action="cadastrar-cliente.php" class="text-center">
+                    <div class="mb-3">
+                        <div class="col-md-auto col-12">
+                            <label class="form-label d-md-none" for="nome">Nome</label>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
+                        </div>
+                        <br>
+                        <div class="col-md-auto col-12">
+                            <label class="form-label d-md-none" for="telefone">Telefone</label>
+                            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" required>
+                        </div>
+                        <br>
+                        <div class="col-md-auto col-12">
+                            <label class="form-label d-md-none" for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                        </div>
+                        <br>
+                        <div class="col-md-auto col-12">
+                            <label class="form-label d-md-none" for="senha">Senha</label>
+                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required>
+                        </div>
+                        <br>
+                        <div class="col-md-auto col-12">
+                            <button type="submit" class="btn" style="background-color: rgba(50, 140, 245, 0.6);">Cadastrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+      
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: rgba(50, 140, 245, 0.6);">Fechar</button>
+            </div>
+      
+         </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div class="modal" id="modalLogin">
+        <div class="modal-dialog">
+            <div class="modal-content">
+          
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Login</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+          
+                <!-- Modal Body -->
+                <div class="modal-body col-sm-4" style="margin: auto; width: 50%; padding: 10px;">
+                    <!-- Formulário de login -->
+                    <form autocomplete="off" method="post" action="login.php" class="text-center">
+                        <div class="mb-3">
+                            <div class="col-md-auto col-12">
+                                <label class="form-label d-md-none" for="email">Email</label>
+                                <input type="email" class="form-control" id="email-login" name="email-login" placeholder="Email" required>
+                            </div>
+                            <br>
+                            <div class="col-md-auto col-12">
+                                <label class="form-label d-md-none" for="senha">Senha</label>
+                                <input type="password" class="form-control" id="senha-login" name="senha-login" placeholder="Senha" required>
+                            </div>
+                            <br>
+                            <div class="col-md-auto col-12">
+                                <button type="submit" class="btn" style="background-color: rgba(50, 140, 245, 0.6);">Entrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+          
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: rgba(50, 140, 245, 0.6);">Fechar</button>
+                </div>
+          
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pets -->
+    <div class="modal" id="modalPets">
+        <div class="modal-dialog">
+            <div class="modal-content">
+          
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Cadastro de Pets</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+          
+                <!-- Modal Body -->
+                <div class="modal-body col-sm-4" style="margin: auto; width: 50%; padding: 10px;">
+                    <!-- Formulário de inclusão de pets -->
+                    <form autocomplete="off" method="post" action="pets.php" class="text-center">
+                        <div class="mb-3">
+                            <div class="col-md-auto col-12">
+                                <label class="form-label d-md-none" for="Nome">Nome do Animal</label>
+                                <input type="text" class="form-control" id="nome-animal" name="nome-animal" placeholder="Nome do Animal" required>
+                            </div>
+                            <br>
+                            <div class="col-md-auto col-12">
+                                <label class="form-label d-md-none" for="animal">Espécie</label>
+                                <select id="animal" name="animal" class="form-control" onchange="mostrarSelect('raca-', this)" required>
+                                    <option value="" disabled selected>Selecione um animal</option>
+                                    <option value="Cachorro">Cachorro</option>
+                                    <option value="Carneiro/Ovelha">Carneiro / Ovelha</option>
+                                    <option value="Cavalo/Égua">Cavalo / Égua</option>
+                                    <option value="Cobra">Cobra</option>
+                                    <option value="Coelho">Coelho</option>
+                                    <option value="Gato">Gato</option>
+                                    <option value="Hamster">Hamster</option>
+                                    <option value="Pássaro">Pássaro</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="col-md-auto col-12" id="raca-nenhuma" style="display: block;">
+                                <label class="form-label d-md-none" for="raca">Raça</label>
+                                <select name="raca-nenhuma" class="raca-animal form-control" >
+                                    <option value="" disabled selected>Animal Necessário</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto col-12" id="raca-cachorro" style="display: none;">
+                                <label class="form-label d-md-none" for="raca">Raça</label>
+                                <select name="raca-animal" class="raca-animal form-control">
+                                    <option value="" disabled selected>Selecione uma raça</option>
+                                    <option value="Affenpinscher">Affenpinscher</option>
+                                    <option value="Airedale Terrier">Airedale Terrier</option>
+                                    <option value="American Pit Bull Terrier">American Pit Bull Terrier</option>
+                                    <option value="American Staffordshire Terrier">American Staffordshire Terrier</option>
+                                    <option value="Basenji">Basenji</option>
+                                    <option value="Basset Hound">Basset Hound</option>
+                                    <option value="Bedlington Terrier">Bedlington Terrier</option>
+                                    <option value="Bichon Frisé">Bichon Frisé</option>
+                                    <option value="Bichon Havanês">Bichon Havanês</option>
+                                    <option value="Border Collie">Border Collie</option>
+                                    <option value="Boston Terrier">Boston Terrier</option>
+                                    <option value="Boxer">Boxer</option>
+                                    <option value="Buldogue">Buldogue</option>
+                                    <option value="Buldogue Francês">Buldogue Francês</option>
+                                    <option value="Bull Terrier">Bull Terrier</option>
+                                    <option value="Bulmastife">Bulmastife</option>
+                                    <option value="Cane Corso">Cane Corso</option>
+                                    <option value="Cão de Crista Chinês">Cão de Crista Chinês</option>
+                                    <option value="Cão de Santo Humberto">Cão de Santo Humberto</option>
+                                    <option value="Cão Esquimó Americano">Cão Esquimó Americano</option>
+                                    <option value="Cavalier King Charles Spaniel">Cavalier King Charles Spaniel</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                    <option value="Chow-Chow">Chow-Chow</option>
+                                    <option value="Cocker Spaniel Inglês">Cocker Spaniel Inglês</option>
+                                    <option value="Dachshund">Dachshund</option>
+                                    <option value="Dobermann">Dobermann</option>
+                                    <option value="Dogue Alemão">Dogue Alemão</option>
+                                    <option value="Galgo Afegão">Galgo Afegão</option>
+                                    <option value="Golden Retriever">Golden Retriever</option>
+                                    <option value="Griffon de Bruxelas">Griffon de Bruxelas</option>
+                                    <option value="Husky Siberiano">Husky Siberiano</option>
+                                    <option value="Jack Russell Terrier">Jack Russell Terrier</option>
+                                    <option value="Labrador Retriever">Labrador Retriever</option>
+                                    <option value="Lhasa Apso">Lhasa Apso</option>
+                                    <option value="Maltês">Maltês</option>
+                                    <option value="Maltipoo">Maltipoo</option>
+                                    <option value="Mastim Persa">Mastim Persa</option>
+                                    <option value="Pastor Alemão">Pastor Alemão</option>
+                                    <option value="Pastor Australiano">Pastor Australiano</option>
+                                    <option value="Pastor Belga">Pastor Belga</option>
+                                    <option value="Pastor da Anatólia">Pastor da Anatólia</option>
+                                    <option value="Poodle">Poodle</option>
+                                    <option value="Pug">Pug</option>
+                                    <option value="Rhodesian Ridgeback">Rhodesian Ridgeback</option>
+                                    <option value="Rottweiler">Rottweiler</option>
+                                    <option value="Samoieda">Samoieda</option>
+                                    <option value="Shiba Inu">Shiba Inu</option>
+                                    <option value="Shih-Tzu">Shih-Tzu</option>
+                                    <option value="Spaniel Bretão">Spaniel Bretão</option>
+                                    <option value="Vira-Lata">Vira-Lata</option>
+                                    <option value="Vira-Lata Caramelo">Vira-Lata Caramelo</option>
+                                    <option value="Yorkshire Terrier">Yorkshire Terrier</option>
+                                    <option value="Zwergspitz">Zwergspitz</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto col-12" id="raca-carneiro-ovelha" style="display: none;">
+                                <label class="form-label d-md-none" for="raca">Raça</label>
+                                <select name="raca-animal" class="raca-animal form-control">
+                                    <option value="" disabled selected>Selecione uma raça</option>
+                                    <option value="Assaf">Assaf</option>
+                                    <option value="Awassi">Awassi</option>
+                                    <option value="Barbados Blackbelly">Barbados Blackbelly</option>
+                                    <option value="Bergamácia">Bergamácia</option>
+                                    <option value="Caracul">Caracul</option>
+                                    <option value="Carneiro de Marco Polo">Carneiro de Marco Polo</option>
+                                    <option value="Carneiro de Soay">Carneiro de Soay</option>
+                                    <option value="Charollais">Charollais</option>
+                                    <option value="Cheviot">Cheviot</option>
+                                    <option value="Chios">Chios</option>
+                                    <option value="Coburger Fuchsschaf">Coburger Fuchsschaf</option>
+                                    <option value="Dorper">Dorper</option>
+                                    <option value="Dorset">Dorset</option>
+                                    <option value="East Friesian">East Friesian</option>
+                                    <option value="Hampshire">Hampshire</option>
+                                    <option value="Harri">Harri</option>
+                                    <option value="Herdwick">Herdwick</option>
+                                    <option value="Icelandic">Icelandic</option>
+                                    <option value="Jacob">Jacob</option>
+                                    <option value="Katahdin">Katahdin</option>
+                                    <option value="Lacaune">Lacaune</option>
+                                    <option value="Ladoum">Ladoum</option>
+                                    <option value="Lonk">Lonk</option>
+                                    <option value="Meat Master">Meat Master</option>
+                                    <option value="Merino">Merino</option>
+                                    <option value="Najdi">Najdi</option>
+                                    <option value="Navajo-Churro">Navajo-Churro</option>
+                                    <option value="Ouessant">Ouessant</option>
+                                    <option value="Ovelha Camaronesa">Ovelha Camaronesa</option>
+                                    <option value="Pelibuey">Pelibuey</option>
+                                    <option value="Polypay">Polypay</option>
+                                    <option value="Priangan">Priangan</option>
+                                    <option value="Racka">Racka</option>
+                                    <option value="Rambouillet">Rambouillet</option>
+                                    <option value="Romanov">Romanov</option>
+                                    <option value="Romney Marsh">Romney Marsh</option>
+                                    <option value="Royal White">Royal White</option>
+                                    <option value="Santa Inês">Santa Inês</option>
+                                    <option value="Sarda">Sarda</option>
+                                    <option value="Scottish Blackface">Scottish Blackface</option>
+                                    <option value="Shetland">Shetland</option>
+                                    <option value="Solognote Sheep">Solognote Sheep</option>
+                                    <option value="Southdown">Southdown</option>
+                                    <option value="Suffolk">Suffolk</option>
+                                    <option value="Texel">Texel</option>
+                                    <option value="Uda">Uda</option>
+                                    <option value="Valais Blacknose">Valais Blacknose</option>
+                                    <option value="Welsh Mountain Badger Faced">Wels Mountain Badger Faced</option>
+                                    <option value="Wiltipoll">Wiltipoll</option>
+                                    <option value="Wiltshire Horn">Wiltshire Horn</option>
+                                    <option value="Zwartbles">Zwartbles</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto col-12" id="raca-cavalo-egua" style="display: none;">
+                                <label class="form-label d-md-none" for="raca">Raça</label>
+                                <select name="raca-animal" class="raca-animal form-control">
+                                    <option value="" disabled selected>Selecione uma raça</option>
+                                    <option value="Akhal-Teke">Akhal-Teke</option>
+                                    <option value="Apaloosa">Apaloosa</option>
+                                    <option value="Ardennes">Ardennes</option>
+                                    <option value="Bashkir Curly">Bashkir Curly</option>
+                                    <option value="Bretão">Bretão</option>
+                                    <option value="Cavalo Andaluz">Cavalo Andaluz</option>
+                                    <option value="Cavalo Árabe">Cavalo Árabe</option>
+                                    <option value="Cavalo Belga">Cavalo Belga</option>
+                                    <option value="Cavalo da Floresta Negra">Cavalo da Floresta Negra</option>
+                                    <option value="Cavalo da Mongólia">Cavalo da Mongólia</option>
+                                    <option value="Cavalo de Passo Peruano">Cavalo de Passo Peruano</option>
+                                    <option value="Cavalo Islândes">Cavalo Islândes</option>
+                                    <option value="Clydesdale">Clydesdale</option>
+                                    <option value="Cob">Cob</option>
+                                    <option value="Crioulo">Crioulo</option>
+                                    <option value="Falabella">Falabella</option>
+                                    <option value="Fjord">Fjord</option>
+                                    <option value="Frisio">Frisio</option>
+                                    <option value="Gypsy Vanner">Gypsy Vanner</option>
+                                    <option value="Halflinger">Halflinger</option>
+                                    <option value="Hanoveriano">Hanoveriano</option>
+                                    <option value="Holsteiner">Holsteiner</option>
+                                    <option value="Irish Sport Horse">Irish Sport Horse</option>
+                                    <option value="Knabstrupper">Knabstrupper</option>
+                                    <option value="Konik">Konik</option>
+                                    <option value="Lippizzano">Lippizzano</option>
+                                    <option value="Manga-Larga Marchador"></option>
+                                    <option value="Marwari">Marwari</option>
+                                    <option value="Missouri Fox Trotter">Missouri Fox Trotter</option>
+                                    <option value="Morgan">Morgan</option>
+                                    <option value="Mustangue">Mustangue</option>
+                                    <option value="Noriker">Noriker</option>
+                                    <option value="Paint Horse">Paint Horse</option>
+                                    <option value="Paso Fino">Paso Fino</option>
+                                    <option value="Percheron">Percheron</option>
+                                    <option value="Pônei de Hucul">Pônei de Hucul</option>
+                                    <option value="Pônei Fell">Pônei Fell</option>
+                                    <option value="Pônei Shetland">Pônei Shetland</option>
+                                    <option value="Pura Raça Espanhol">Pura Raça Espanhol</option>
+                                    <option value="Puro-Sangue Inglês">Puro-Sangue Inglês</option>
+                                    <option value="Puro-Sangue Lusitano">Puro-Sangue Lusitano</option>
+                                    <option value="Quarto de Milha">Quarto de Milha</option>
+                                    <option value="Saddlebred Americano">Saddlebred Americano</option>
+                                    <option value="Shire">Shire</option>
+                                    <option value="Silesian">Silesian</option>
+                                    <option value="Standardbred">Standardbred</option>
+                                    <option value="Tennessee Walking">Tennessee Walking</option>
+                                    <option value="Trakehner">Trakehner</option>
+                                    <option value="Turcomano">Turcomano</option>
+                                    <option value="Warmblood Belga">Warmblood Belga</option>
+                                    <option value="Warmblood Holândes">Warmblood Holândes</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto col-12" id="raca-cobra" style="display: none;">
+                                <label class="form-label d-md-none" for="raca">Raça</label>
+                                <select name="raca-animal" class="raca-animal form-control">
+                                    <option value="" disabled selected>Selecione uma raça</option>
+                                    <option value="Caninana">Caninana</option>
+                                    <option value="Cascavel">Cascavel</option>
+                                    <option value="Cobra-d'Água">Cobra-d'Água</option>
+                                    <option value="Cobra-de-Escada">Cobra-de-Escada</option>
+                                    <option value="Cobra-do-Milho">Cobra-do-Milho</option>
+                                    <option value="Cobra-Papagaio">Cobra-Papagaio</option>
+                                    <option value="Cobra-Verde">Cobra-Verde</option>
+                                    <option value="Coral-Verdadeira">Coral-Verdadeira</option>
+                                    <option value="Falsa-Coral">Falsa-Coral</option>
+                                    <option value="Jararaca">Jararaca</option>
+                                    <option value="Jararacuçu-do-Brejo">Jararacuçu-do-Brejo</option>
+                                    <option value="Jiboia">Jiboia</option>
+                                    <option value="Mamba Negra">Mamba Negra</option>
+                                    <option value="Muçurana">Muçurana</option>
+                                    <option value="Naja">Naja</option>
+                                    <option value="Píton-Real">Píton-Real</option>
+                                    <option value="Píton-Retículada">Píton-Retículada</option>
+                                    <option value="Sucuri">Sucuri</option>
+                                    <option value="Surucucu">Surucucu</option>
+                                    <option value="Urutu">Urutu</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto col-12" id="raca-coelho" style="display: none;">
+                                <label class="form-label d-md-none" for="raca">Raça</label>
+                                <select name="raca-animal" class="raca-animal form-control">
+                                    <option value="" disabled selected>Selecione uma raça</option>
+                                    <option value="Altex Rabbit">Altex Rabbit</option>
+                                    <option value="American Fuzzy Lop">American Fuzzy Lop</option>
+                                    <option value="Angorá">Angorá</option>
+                                    <option value="Argenté Anglais">Argenté Anglais</option>
+                                    <option value="Argenté Rabbit">Argenté Rabbit</option>
+                                    <option value="Argenté St Hubert">Argenté St Hubert</option>
+                                    <option value="Beige Rabbit">Beige Rabbit</option>
+                                    <option value="Blue of Sint-Niklaas">Blue of Sint-Niklaas</option>
+                                    <option value="Borboleta Inglês">Borboleta Inglês</option>
+                                    <option value="Bourbonnais Grey">Bourbonnais Grey</option>
+                                    <option value="Brazilian Domestic Rabbit">Brazilian Domestic Rabbit</option>
+                                    <option value="Brown Chestnut of Lorraine">Brown Chestnut of Lorraine</option>
+                                    <option value="Checkered Giant Rabbit">Checkered Giant Rabbit</option>
+                                    <option value="Coelho Gigante Flemish">Coelho Gigante Flemish</option>
+                                    <option value="Coelho Polônes">Coelho Polônes</option>
+                                    <option value="Coelho Rex">Coelho Rex</option>
+                                    <option value="Czech Red Rabbit">Czech Red Rabbit</option>
+                                    <option value="Czech Spot">Czech Spot</option>
+                                    <option value="Dalmatian">Dalmatian</option>
+                                    <option value="Dwarf Angora Rabbit">Dwarf Angora Rabbit</option>
+                                    <option value="Dwarf Hotot">Dwarf Hotot</option>
+                                    <option value="English Lop">English Lop</option>
+                                    <option value="French Lop">French Lop</option>
+                                    <option value="Golden Glavcot">Golden Glavcot</option>
+                                    <option value="Havana">Havana</option>
+                                    <option value="Lebre Belga">Lebre Belga</option>
+                                    <option value="Lilac Rabbit">Lilac Rabbit</option>
+                                    <option value="Netherland Dwarf">Netherland Dwarf</option>
+                                    <option value="Orylag">Orylag</option>
+                                    <option value="Palomino Rabbit">Palomino Rabbit</option>
+                                    <option value="Perlfeh">Perlfeh</option>
+                                    <option value="Plush Lop">Plush Lop</option>
+                                    <option value="Rhinelander Rabbit">Rhinelander Rabbit</option>
+                                    <option value="Silver Marten Rabbit">Silver Marten Rabbit</option>
+                                    <option value="Swedish Hare">Swedish Hare</option>
+                                    <option value="Teddy Dwerg">Teddy Dwerg</option>
+                                    <option value="Tri Coloured Dutch">Tri Coloured Dutch</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto col-12" id="raca-gato" style="display: none;">
+                                <label class="form-label d-md-none" for="raca">Raça</label>
+                                <select name="raca-animal" class="raca-animal form-control">
+                                    <option value="" disabled selected>Selecione uma raça</option>
+                                    <option value="American Wirehair">American Wirehair</option>
+                                    <option value="Angorá">Angorá</option>
+                                    <option value="Azul Russo">Azul Russo</option>
+                                    <option value="Balinês">Balinês</option>
+                                    <option value="Bobtail Americano">Bobtail Americano</option>
+                                    <option value="Bombaim">Bombaim</option>
+                                    <option value="British Longhair">British Longhair</option>
+                                    <option value="Burmilla">Burmilla</option>
+                                    <option value="Chartreux">Chartreux</option>
+                                    <option value="Cornish Rex">Cornish Rex</option>
+                                    <option value="Curl Americano">Curl Americano</option>
+                                    <option value="Cymric">Cymric</option>
+                                    <option value="Donskoy">Donskoy</option>
+                                    <option value="Exótico">Exótico</option>
+                                    <option value="Gato Abissínio">Gato Abissínio</option>
+                                    <option value="Gato Birmanês">Gato Birmanês</option>
+                                    <option value="Gato Comum Europeu">Gato Comum Europeu</option>
+                                    <option value="Gato-de-Bengala">Gato-de-Bengala</option>
+                                    <option value="Gato de Pelo Curto Americano">Gato de Pelo Curto Americano</option>
+                                    <option value="Gato de Pelo Curto Inglês">Gato de Pelo Curto Inglês</option>
+                                    <option value="Gato Manês">Gato Manês</option>
+                                    <option value="Gato Savannah">Gato Savannah</option>
+                                    <option value="Himalaio">Himalaio</option>
+                                    <option value="Kinkalow">Kinkalow</option>
+                                    <option value="Korat">Korat</option>
+                                    <option value="LaPerm">LaPerm</option>
+                                    <option value="Lykoi">Lykoi</option>
+                                    <option value="Maine Coon">Maine Coon</option>
+                                    <option value="Munchkin">Munchkin</option>
+                                    <option value="Nebelung"></option>
+                                    <option value="Norueguês da Floresta">Norueguês da Floresta</option>
+                                    <option value="Ocicat">Ocicat</option>
+                                    <option value="Oriental Havana">Oriental Havana</option>
+                                    <option value="Oriental Longhair">Oriental Longhair</option>
+                                    <option value="Oriental Shorthair">Oriental Shorthair</option>
+                                    <option value="Persa">Persa</option>
+                                    <option value="Peterbald">Peterbald</option>
+                                    <option value="Ragamuffin">Ragamuffin</option>
+                                    <option value="Ragdoll">Ragdoll</option>
+                                    <option value="Sagrado da Birmânia">Sagrado da Birmânia</option>
+                                    <option value="Scottish Fold">Scottish Fold</option>
+                                    <option value="Selkirk Rex">Selkirk Rex</option>
+                                    <option value="Siâmes">Siâmes</option>
+                                    <option value="Siberiano">Siberiano</option>
+                                    <option value="Singapura">Singapura</option>
+                                    <option value="Somali">Somali</option>
+                                    <option value="Sphynx">Sphynx</option>
+                                    <option value="Thai">Thai</option>
+                                    <option value="Tonquinês">Tonquinês</option>
+                                    <option value="Toyger">Toyger</option>
+                                    <option value="Van Turco">Van Turco</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto col-12" id="raca-hamster" style="display: none;">
+                                <label class="form-label d-md-none" for="raca">Raça</label>
+                                <select name="raca-animal" class="raca-animal form-control">
+                                    <option value="" disabled selected>Selecione uma raça</option>
+                                    <option value="Campbell">Campbell</option>
+                                    <option value="Hamster Anão Russo">Hamster Anão Russo</option>
+                                    <option value="Hamster Chinês">Hamster Chinês</option>
+                                    <option value="Hamster Roborovski">Hamster Roborovski</option>
+                                    <option value="Hamster Sírio">Hamster Sírio</option>
+                                    <option value="Winter White">Winter White</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-auto col-12" id="raca-passaro" style="display: none;">
+                                <label class="form-label d-md-none" for="raca">Raça</label>
+                                <select name="raca-passaro" class="raca-animal form-control">
+                                    <option value="" disabled selected>Selecione uma raça</option>
+                                    <option value="Agapornis">Agapornis</option>
+                                    <option value="Cacatua">Cacatua</option>
+                                    <option value="Calopsita">Calopsita</option>
+                                    <option value="Canário">Canário</option>
+                                    <option value="Papagaio">Papagaio</option>
+                                    <option value="Periquito">Periquito</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="col-md-auto col-12">
+                                <label class="form-label d-md-none" for="cor-animal">Cor do Animal</label>
+                                <select name="cor-animal" class="cor-animal form-control">
+                                    <option value="" disabled selected>Selecione uma cor</option>
+                                    <option value="Branco">Branco</option>
+                                    <option value="Cinza">Cinza</option>
+                                    <option value="Cinza-Escuro">Cinza-Escuro</option>
+                                    <option value="Marrom">Marrom</option>
+                                    <option value="Marrom-Claro">Marrom-Claro</option>
+                                    <option value="Marrom-Escuro">Marrom-Escuro</option>
+                                    <option value="Preto">Preto</option>
+                                    <option value="Rosado">Rosado</option>
+                                    <option value="Verde">Verde</option>
+                                    <option value="Verde-Claro">Verde-Claro</option>
+                                    <option value="Verde-Escuro">Verde-Escuro</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="col-md-auto col-12">
+                                <label class="form-label d-md-none" for="cor-olhos">Cor dos Olhos</label>
+                                <select name="cor-olhos" class="cor-olhos form-control" required>
+                                    <option value="" disabled selected>Selecione uma cor de olhos</option>
+                                    <option value="Azul">Azul</option>
+                                    <option value="Castanho">Castanho</option>
+                                    <option value="Marrom-Escuro">Marrom-Escuro</option>
+                                    <option value="Preto">Preto</option>
+                                    <option value="Vermelho">Vermelho</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="col-md-auto col-12">
+                                <label class="form-label d-md-none" for="cor-olhos">Email do dono</label>
+                                <input type="email" class="form-control" id="email-dono" name="email-dono" placeholder="Email do dono" required>
+                            </div>
+                            <br>
+                            <div class="col-md-auto col-12">
+                                <button type="submit" class="btn" style="background-color: rgba(50, 140, 245, 0.6);">Cadastrar Animal</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+          
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: rgba(50, 140, 245, 0.6);">Fechar</button>
+                </div>
+          
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Sair -->
+    <div class="modal" id="modalSair">
+        <div class="modal-dialog">
+            <div class="modal-content">
+          
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Sair</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+          
+                <!-- Modal Body -->
+                <div class="modal-body col-sm-4" style="margin: auto; width: 50%; padding: 10px;">
+                    <p>Deseja realmente sair?</p>
+                    <br>
+                    <div class="col-md-auto col-12">
+                        <a href="sair.php" type="button" class="btn btn-danger text-center">Sair da minha conta</a> 
+                    </div>
+                </div>
+          
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: rgba(50, 140, 245, 0.6);">Fechar</button>
+                </div>
+          
+            </div>
+        </div>
+    </div>
+</body>
+</html>
